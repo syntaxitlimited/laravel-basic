@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CrudController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -13,6 +14,12 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/crud', [CrudController::class, 'index'])->name('crud');
+Route::get('/create', [CrudController::class, 'create'])->name('create');
+Route::post('/crud/store', [CrudController::class, 'store'])->name('store');
+
 
 
 Route::get('/contact', [HomeController::class, 'contact']);
