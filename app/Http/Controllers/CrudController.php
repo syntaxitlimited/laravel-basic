@@ -9,10 +9,24 @@ class CrudController extends Controller
 {
     public function index()
     {
-       
         $students = DB::table('students')->get();
         return view('crud.index',compact('students'));
     }
+
+    public function edit($id)
+    {
+        $student = DB::table('students')->where('id',$id)->first();
+        return view('crud.edit',compact('student'));
+    }
+
+    public function delete($id)
+    {
+        DB::table('students')->where('id', $id)->delete();
+        return redirect()->route('crud');
+
+    }
+
+
     public function create()
     {
         return view('crud.create');
@@ -20,12 +34,12 @@ class CrudController extends Controller
 
     public function store(Request $request)
     {
-
-
-        // $user['id'] = 1;
-        // $user['name'] = 'dale';
-
-        // DB::table('users')->insert($user);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ]);
 
 
         DB::table('students')->insert(
@@ -37,6 +51,21 @@ class CrudController extends Controller
             ]
         );
 
-        return redirect()->route('crud');
+        return redirect()->route('crud')->with('message','Data Insert Successfully');
+    }
+
+
+    public function update(Request $request)
+    {
+        DB::table('students')->where('id',$request->student_id)->update(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+            ]
+        );
+
+        return redirect()->route('crud')->with('message','Data Update Successfully');
     }
 }

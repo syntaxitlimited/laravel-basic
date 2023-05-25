@@ -18,58 +18,42 @@
 
 
         <div class="card">
-            <h5 class="card-header">Student Information 
-              <div class="col-md-12 text-right">
-                <a class="btn btn-success" href="{{route('create')}}">Create</a>
-            </div>
-          </h5>
+            <h5 class="card-header">Student Information
+                <div class="col-md-12 text-right">
+                    <a class="btn btn-info" href="{{route('crud')}}">All Users</a>
+                </div>
 
+            </h5>
             <div class="card-body">
               <h5 class="card-title">Student List</h5>
-
-              @if(session()->has('message'))
-                  <div class="alert alert-success">
-                      {{ session()->get('message') }}
-                  </div>
-              @endif
-
               <div>
-                
-                
-
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Phone</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Address</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($students as $row)
-                        
-                    <tr>
-                      <th scope="row">{{$loop->index + 1}}</th>
-                      <td>{{$row->name}}</td>
-                      <td>{{$row->phone}}</td>
-                      <td>{{$row->email}}</td>
-                      <td>{{$row->address}}</td>
-                      <td>
-                        <a class="badge badge-warning" href="{{route('edit',$row->id)}}">Edit</a>
-                        <a class="badge badge-danger" href="{{route('delete',$row->id)}}">delete</a>
-                      </td>
-                    </tr>
-
+                <form action="{{route('update')}}" method="post">
+                    @csrf
+                    <input type="hidden" value="{{$student->id}}" name="student_id">
+                    <div class="form-group">
+                      <label for="exampleInputname1">Name</label>
+                      <input type="text" value="{{$student->name}}" name="name" class="form-control" id="exampleInputname1" required aria-describedby="emailHelp">
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="exampleInputPhone1">Phone</label>
+                        <input type="text" value="{{$student->phone}}" required name="phone" class="form-control" id="exampleInputPhone1" aria-describedby="emailHelp">
+                    </div>
+        
+        
+        
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" required class="form-control" id="exampleInputEmail1" value="{{$student->email}}" name="email" aria-describedby="emailHelp">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
                     
-                    @endforeach
-                   
-                  </tbody>
-                </table>
-
-
+                    <div class="form-group">
+                        <label for="exampleInputaddress">Address</label>
+                        <textarea class="form-control" required name="address" id="exampleInputaddress" cols="30" rows="10">{{$student->address}}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
               </div>
             </div>
           </div>
