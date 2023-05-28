@@ -69,6 +69,9 @@ https://templatemo.com/tm-551-stand-blog
             <li class="nav-item">
               <a class="nav-link" href="{{route('crud')}}">Crud</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('crud1')}}">Crud1</a>
+            </li>
           </ul>
         </div>
       </div>
