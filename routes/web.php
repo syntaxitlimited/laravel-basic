@@ -17,6 +17,8 @@ use App\Http\Controllers\CrudController1;
 */
 
 
+Route::get('/home', [HomeController::class, 'home']);
+
 Route::get('/crud', [CrudController::class, 'index'])->name('crud');
 Route::get('/crud/{id}', [CrudController::class, 'edit'])->name('edit');
 Route::get('/crud/delete/{id}', [CrudController::class, 'delete'])->name('delete');
@@ -44,4 +46,5 @@ Route::get('/post-details', [HomeController::class, 'post_details']);
 Route::get('/', function () {
     return view('index');
 });
+
 
