@@ -21,7 +21,7 @@ Route::get('/home', [HomeController::class, 'home']);
 
 Route::get('/crud', [CrudController::class, 'index'])->name('crud');
 Route::get('/crud/{id}', [CrudController::class, 'edit'])->name('edit');
-Route::get('/crud/delete/{id}', [CrudController::class, 'delete'])->name('delete');
+Route::post('/crud/delete/{id}', [CrudController::class, 'delete'])->name('delete');
 Route::get('/create', [CrudController::class, 'create'])->name('create');
 Route::post('/crud/store', [CrudController::class, 'store'])->name('store');
 Route::post('/crud/update', [CrudController::class, 'update'])->name('update');
@@ -33,7 +33,7 @@ Route::get('/crud1', [CrudController1::class, 'index'])->name('crud1');
 Route::get('/teacher/create', [CrudController1::class, 'create'])->name('teacher.create');
 Route::post('/teacher/store', [CrudController1::class, 'store'])->name('teacher.store');
 Route::get('/teacher/{id}', [CrudController1::class, 'edit'])->name('teacher.edit');
-Route::get('/teacher/delete/{id}', [CrudController1::class, 'delete'])->name('teacher.delete');
+Route::post('/teacher/delete/{id}', [CrudController1::class, 'delete'])->name('teacher.delete');
 Route::post('/teacher/update', [CrudController1::class, 'update'])->name('teacher.update');
 
 

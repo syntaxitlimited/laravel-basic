@@ -74,7 +74,7 @@ class CrudController1 extends Controller
     public function delete($id)
     {
         Teacher::where('id', $id)->delete();
-        return redirect()->route('crud1');
+        return redirect()->route('crud1')->with('message','Item Delete successfully.');
 
     }
 }

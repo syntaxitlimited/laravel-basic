@@ -59,7 +59,12 @@
                       <td>{{$row->address}}</td>
                       <td>
                         <a class="badge badge-warning" href="{{route('edit',$row->id)}}">Edit</a>
-                        <a class="badge badge-danger" href="{{route('delete',$row->id)}}">delete</a>
+
+                        <form method="POST" action="{{route('delete',$row->id)}}">
+                          @csrf
+                          <button type="submit" class="badge badge-danger show_confirm" data-toggle="tooltip" title='Delete'>Delete</button>
+                      </form>
+
                       </td>
                     </tr>
 
@@ -94,5 +99,30 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
     -->
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+ 
+    $('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          event.preventDefault();
+          swal({
+              title: `Are you sure you want to delete this record?`,
+              text: "If you delete this, it will be gone forever.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+  
+</script>
+
+
   </body>
 </html>
